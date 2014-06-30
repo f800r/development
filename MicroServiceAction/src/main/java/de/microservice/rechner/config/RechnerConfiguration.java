@@ -13,11 +13,21 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class RechnerConfiguration extends Configuration {
     @NotEmpty
     private String template;
-
     @NotEmpty
     private String defaultName = "Stranger";
-
+    @NotEmpty
+    private String defaultXpathQuery = "/configuration/stage/user/text()";
     private Integer defaultJahr = 2017;
+
+    @JsonProperty
+    public String getDefaultXpathQuery() {
+        return defaultXpathQuery;
+    }
+
+    @JsonProperty
+    public void setDefaultXpathQuery(String defaultXpathQuery) {
+        this.defaultXpathQuery = defaultXpathQuery;
+    }
 
     @JsonProperty
     public String getTemplate() {

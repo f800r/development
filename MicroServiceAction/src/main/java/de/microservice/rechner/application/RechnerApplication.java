@@ -2,6 +2,7 @@ package de.microservice.rechner.application;
 
 import de.microservice.rechner.config.RechnerConfiguration;
 import de.microservice.rechner.healthcheck.RechnerHealthCheck;
+import de.microservice.rechner.jerseyresources.RechnerResourceData;
 import de.microservice.rechner.jerseyresources.RechnerResourceDateTime;
 import de.microservice.rechner.jerseyresources.RechnerResourceUserGreeting;
 import io.dropwizard.Application;
@@ -34,6 +35,9 @@ public class RechnerApplication extends Application<RechnerConfiguration> {
         final RechnerResourceDateTime resourceDateTime = new RechnerResourceDateTime(
                 configuration.getDefaultJahr());
         environment.jersey().register(resourceDateTime);
+
+        final RechnerResourceData rechnerResourceData = new RechnerResourceData(configuration.getDefaultXpathQuery());
+        environment.jersey().register(rechnerResourceData);
 
 
         final RechnerHealthCheck healtCheck = new RechnerHealthCheck(configuration.getTemplate());

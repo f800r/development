@@ -22,5 +22,11 @@ C:\Users\admin>curl http://localhost:8080/datetime?ss=2
 C:\Users\admin>curl http://localhost:8080/datetime?year=-1
 {"id":4,"content":"-1"}
 
+C:\Users\admin>curl http://localhost:8080/data?xpath=/configuration/stage/server/text()
+{"id":2,"content":"solv048.f800r.local solv049.f800r.local"}
+
+C:\Users\admin>curl  http://localhost:8080/data?xpath=/configuration/stage\[@name='ds'\]/server/text()
+solv048.f800r.local solv049.f800r.local
+
 Continue mit
 http://dropwizard.readthedocs.org/en/latest/manual/core.html

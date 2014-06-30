@@ -1,0 +1,43 @@
+<?xml  version="1.0"  standalone="yes"?>
+
+<configuration>
+    <settings name="default">
+        <userroot>/opt/instances</userroot>
+        <defaultpath>tomcat/webapps</defaultpath>
+        <defaultbackuppath>tomcat/old_webapps</defaultbackuppath>
+        <artifactoryhost>artifactory.f800r.local</artifactoryhost>
+        <artifactorypath>/artifactory/repo/de/f800r</artifactorypath>
+        <nexushost>nexus-beta.f800r.local</nexushost>
+        <nexuspath>/nexus/content/groups/deployment-repo/de/f800r</nexuspath>
+        <applicationid>efi-application</applicationid>
+        <artifactoryprocuct>efi</artifactoryprocuct>
+        <tcloginurl>http://teamcity.f800r.local/teamCity/login.html</tcloginurl>
+        <temppath>/tmp</temppath>
+        <baseport>130</baseport>
+        <email>operator-am@f800r.local</email>
+
+    </settings>
+    <source name="teamcity">
+        <server>teamcity.f800r.local</server>
+        <user>teamcity</user>
+    </source>
+
+    <source name="nexus">
+        <server>nexus-beta.f800r.local</server>
+        <mavenresolve>/nexus/service/local/artifact/maven/resolve</mavenresolve>
+        <mavencontent>/nexus/service/local/artifact/maven/content</mavencontent>
+        <repositoryBase>/nexus/content/groups/deployment-repo</repositoryBase>
+        <repository>deployment-repo</repository>
+        <extension>war</extension>
+    </source>
+
+    <stage name="ds">
+        <server>solv048.f800r.local</server>
+        <server>solv049.f800r.local</server>
+        <user>f800r</user>
+        <source>teamcity</source>
+        <basepath>/opt</basepath>
+        <filepath>.</filepath>
+    </stage>
+
+</configuration>
