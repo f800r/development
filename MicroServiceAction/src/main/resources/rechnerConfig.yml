@@ -2,3 +2,9 @@ template: Hello, %s!
 defaultName: Stranger
 defaultJahr: 2017
 defaultXpathQuery: "/configuration/stage/user/text()"
+
+logging:
+  appenders:
+    - type: console
+      threshold: DEBUG
+      target: stderr

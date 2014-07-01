@@ -5,6 +5,8 @@ import de.microservice.rechner.healthcheck.RechnerHealthCheck;
 import de.microservice.rechner.jerseyresources.RechnerResourceData;
 import de.microservice.rechner.jerseyresources.RechnerResourceDateTime;
 import de.microservice.rechner.jerseyresources.RechnerResourceUserGreeting;
+import de.microservice.rechner.livecycle.DatabaseClient;
+import de.microservice.rechner.livecycle.DatabaseClientManager;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -38,6 +40,10 @@ public class RechnerApplication extends Application<RechnerConfiguration> {
 
         final RechnerResourceData rechnerResourceData = new RechnerResourceData(configuration.getDefaultXpathQuery());
         environment.jersey().register(rechnerResourceData);
+
+        final DatabaseClient databaseClient = new DatabaseClient();
+        final DatabaseClientManager databaseClientManager = new DatabaseClientManager(databaseClient);
+        environment.lifecycle().manage(databaseClientManager);
 
 
         final RechnerHealthCheck healtCheck = new RechnerHealthCheck(configuration.getTemplate());
