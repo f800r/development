@@ -1,5 +1,7 @@
 MicroServiceAction/.idea/
 
+MicroServiceSpringBootAlpha/.idea/
+
 #java specific
 *.class
 
