@@ -1,0 +1,56 @@
+// http://gradle.org/docs/current/userguide/dependency_management.html
+// https://github.com/bmuschko/gradle-in-action-source
+
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+    }
+}
+
+buildDir = 'target'
+
+List springboot = [
+    'org.springframework.boot:spring-boot-starter-parent:1.2.1.RELEASE',
+    'org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE',
+    'org.springframework.boot:spring-boot-starter-actuator:1.2.1.RELEASE',
+    'org.springframework.boot:spring-boot-starter-test:1.2.1.RELEASE'
+]
+
+List testlibs = [
+    'com.jayway.restassured:rest-assured:2.4.0',
+    'junit:junit:4.12',
+    'org.testng:testng:6.8.8'
+]
+
+dependencies {
+    compile springboot, testlibs
+    testCompile springboot, testlibs
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+task listJars << {
+    configurations.compile.each { File file -> println file.name }
+}
+
+task testNG(type: Test) {
+    useTestNG()
+}

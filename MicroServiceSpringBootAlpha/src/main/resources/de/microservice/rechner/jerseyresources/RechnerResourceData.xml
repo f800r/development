@@ -1,0 +1,17 @@
+<?xml  version="1.0"  standalone="yes"?>
+
+<configuration>
+    <settings name="default">
+        <baseport>130</baseport>
+    </settings>
+
+    <stage name="ds">
+        <server>solv048.f800r.local</server>
+        <server>solv049.f800r.local</server>
+        <user>f800r</user>
+        <source>teamcity</source>
+        <basepath>/opt</basepath>
+        <filepath>.</filepath>
+    </stage>
+
+</configuration>
